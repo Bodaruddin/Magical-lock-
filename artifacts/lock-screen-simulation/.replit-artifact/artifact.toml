@@ -1,0 +1,24 @@
+kind = "mobile"
+previewPath = "/"
+title = "Lock Screen Simulation"
+description = "A self-contained Android-compatible lock screen simulation with configurable demo PIN attempts, optional wallpaper background, hidden setup access, and a clearly labeled demo home environment."
+version = "1.0.0"
+id = "artifacts/lock-screen-simulation"
+router = "expo-domain"
+
+[[services]]
+name = "expo"
+ensurePreviewReachable = "/status"
+paths = [ "/" ]
+localPort = 23388
+
+[services.development]
+run = "pnpm --filter @workspace/lock-screen-simulation run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/lock-screen-simulation", "run", "build" ]
+run = [ "pnpm", "--filter", "@workspace/lock-screen-simulation", "run", "serve" ]
+
+[services.env]
+PORT = "23388"
+BASE_PATH = "/"
